@@ -8,4 +8,5 @@ int main()
 
     myin.ItemInit();
 
+    myin.HandleItemErase(myin.handleItem);
 }

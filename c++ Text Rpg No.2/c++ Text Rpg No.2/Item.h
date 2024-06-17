@@ -21,20 +21,29 @@ enum class ItemId
 // 일단 매니저로 사용하는거는 나중에 분리하고 모든기능을 
 // 이 클래스에 때려놓고
 // 모듈화를 천천히 진행하자
+struct ItemMMOR
+{
+	ItemId		CurItemId;
+	string		ItemName; //아이템 이름 저장
+};
 
 
 class MainItem
 {
 public:
-	vector<string> ItemName;//아이템 이름 저장
-	string*		   HandleItem;
-	vector<string>::iterator Nooo;
+	// 아이템의 실제 저장공간
+	vector<ItemMMOR>  ItemBag;
+	//손에 있는 아이템
+	vector<ItemMMOR>::iterator handleItem;
 public:
+	
 	// 아이템 init
 	void ItemInit();
-	//item id입력하면 item 이름 출력
-	const string HandleItemGet(ItemId ItemId);
-	void HandleItemErase(ItemId ItemId);
+	//HandleItem 지우기
+	void HandleItemErase(vector<ItemMMOR>::iterator& ItemId);
+	
+
+	
 
 public:
 	MainItem();
