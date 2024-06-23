@@ -1,12 +1,26 @@
-﻿#include "pch.h"
-#include <iterator>
+﻿#include <iterator>
 #include <iostream>
+
+
+#include "pch.h"
+#include "Ccore.h"
 #include "Item.h"
+
+
 int main()
 {
-    MainItem::GetInst()->ItemInit();
+    Ccore::GetInst()->Init();
+
 
     
-    MainItem::GetInst()->OpenItemBag();
+
+    while(true)
+    {
+
+        Ccore::GetInst()->Progress();
+
+
+    }
+   
     
 }

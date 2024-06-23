@@ -30,6 +30,9 @@
     <ClCompile Include="Item.cpp">
       <Filter>Object\4. Item</Filter>
     </ClCompile>
+    <ClCompile Include="Ccore.cpp">
+      <Filter>Object\1. MAIN SYSTEM</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -38,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Object\4. Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Ccore.h">
+      <Filter>Object\1. MAIN SYSTEM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
