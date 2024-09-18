@@ -12,7 +12,7 @@ enum class ItemId
 	FirePortion,
 	BigFirePortion,
 
-	End = 32,
+	End =32,
 
 };
 // 그러니까 아이템을 사용할때 이름값만 가져오면 어떤아이템을 사용되는지 
@@ -45,10 +45,17 @@ public:
 	void HandleItemErase(vector<ItemMMOR>::iterator& ItemId);
 	// 아이템 찾아주는 함수 그리고 아이템 나열 하는 함수
 	void OpenItemBag();
-	// 함수 말하면 id int값 뽑아오는 함수
+	// iterator 주소값을 id int값 뽑아오는 함수
 	int SelectId(const vector<ItemMMOR>::iterator& ItemId);
 	// iterator 주소값을 id string값 뽑아오는 함수
 	string SelectName(const vector<ItemMMOR>::iterator& ItemId);
+	// 아이템 사용하는 함수
+	void UseItemManuOpen();
+	// handleItem로 지정한 아이템 사용하는 함수
+	void UseItem(vector<ItemMMOR>::iterator Item);
+	// handleItem을 원하는 위치로 변경하는 함수
+	void ChangeHandleItem(int item);
+	// 
 
 
 };

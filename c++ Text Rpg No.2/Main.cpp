@@ -5,18 +5,22 @@
 #include "pch.h"
 #include "Ccore.h"
 #include "Item.h"
-
+bool GameOff = true;
 
 int main()
 {
+
+    std::locale::global(std::locale(""));
+    std::wcout.imbue(std::locale());
+    Ccore::GetInst()->P_DataInit();
+    Ccore::GetInst()->GameStartSet();
     Ccore::GetInst()->Init();
-
-
+    
     
 
-    while(true)
+    while(GameOff)
     {
-
+        
         Ccore::GetInst()->Progress();
 
 

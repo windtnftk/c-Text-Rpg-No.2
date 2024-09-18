@@ -9,6 +9,10 @@ using std::wstring;
 #include <iostream>
 #include <map>
 using std::map;
+#include <fstream>
+#include "Default.h"
+
+extern bool GameOff;
 
 
 #define SINGLE(type) public:\

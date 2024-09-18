@@ -12,8 +12,6 @@ string ItemArr[(int)ItemId::End] =
 	"weapon3",
 	"FirePortion",
 	"BigFirePortion",
-	
-	"End"
 };
 
 
@@ -35,17 +33,20 @@ void MainItem::ItemInit()
 
 	// 균일 분포에서 랜덤한 정수 생성 (0 이상 99 이하)
 	std::uniform_int_distribution<int> distribution(0, 99);
-
 	
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 9; ++i)
 	{
 		int rendom = distribution(gen) % 10;
+		if (9 == rendom)
+		{
+			--rendom;
+		}
 		ItemMMOR NewItem = { static_cast<ItemId>(rendom),ItemArr[rendom] };
-		MainItem::GetInst()->ItemBag.push_back(NewItem);
+		ItemBag.push_back(NewItem);
+		
 	}
-	
-	vector<ItemMMOR>::iterator RealhandleItem = MainItem::GetInst()->ItemBag.begin();
-	handleItem = RealhandleItem;
+	handleItem = ItemBag.begin();
+	OpenItemBag();
 }
 
 void MainItem::HandleItemErase(vector<ItemMMOR>::iterator& ItemId)
@@ -60,7 +61,7 @@ void MainItem::HandleItemErase(vector<ItemMMOR>::iterator& ItemId)
 }
 int MainItem::SelectId(const vector<ItemMMOR>::iterator& ItemId)
 {
-	if (ItemId == MainItem::GetInst()->ItemBag.end())
+	if (ItemId == ItemBag.end())
 	{
 		std::cout << "Get Id fale" << std::endl;
 		return 0;
@@ -78,11 +79,43 @@ string MainItem::SelectName(const vector<ItemMMOR>::iterator& ItemId)
 	return (string)Hi.ItemName;
 }
 
+void MainItem::UseItemManuOpen()
+{
+	OpenItemBag();
+	// 아이템 을 고르고 사용을 할지 정하자
+	int choice = 0;
+	std::cout << std::endl << "사용하실 아이템을 고르세요" << std::endl;
+	std::cin >> choice;
+	if (0 == choice || choice > ItemBag.size())
+	{
+		ErrorCode();
+	}
+	else
+	{
+		handleItem = ItemBag.begin();
+		for (int i = 0, item = -1; i < item; ++i)
+		{
+			++handleItem;
+		}
+	}
+	UseItem(handleItem);
+	
+}
+
+void MainItem::UseItem(vector<ItemMMOR>::iterator Item)
+{
+	
+}
+void MainItem::ChangeHandleItem(int item)
+{
+	
+}
+
 void MainItem::OpenItemBag()
 {
-	vector<ItemMMOR>::iterator BeginhandleItem = MainItem::GetInst()->ItemBag.begin();
+	vector<ItemMMOR>::iterator BeginhandleItem = ItemBag.begin();
 
-	for (int i = 0; i < MainItem::GetInst()->ItemBag.size(); ++BeginhandleItem,++i)
+	for (int i = 0; i < ItemBag.size(); ++BeginhandleItem,++i)
 	{
 		//int GetId = GetInst()->SelectId(BeginhandleItem);
 		string GetName =GetInst()->SelectName(BeginhandleItem);

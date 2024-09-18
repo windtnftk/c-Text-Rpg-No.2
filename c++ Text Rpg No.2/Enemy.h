@@ -5,31 +5,34 @@
 	// 아이템 정보를 저장할 class
 	// 그걸 관리해주는 iterator 만들고 진행
 	// 그걸 모두 상속해서 사용 하자
+
+enum class GameMode; // 이런 enum class가 있다고 미리 선언
 enum class EnemyId
 {
 	Enemy1,
 	Enemy2,
 	Enemy3,
 	Enemy4,
+	Enemy5,
+	Enemy6,
+	Enemy7,
+	Enemy8,
+	Enemy9,
 	God
 };
 
-
-
-
-
-
 struct B_Status
 {
-	wstring		C_Name;// 캐릭터 이름
-	short		C_Level;// 캐릭터 래벨
+	string		C_Name;// 캐릭터 이름
+	int			C_Level;// 캐릭터 래벨
 	int			C_Power;// 캐릭터 힘
 	int			C_Health;// 캐릭터 생명력
 	int			C_Exp;//처치시 경험치
 };
 struct E_Info
 {
-	B_Status		E_Info;//몬스터 기본정보
+	B_Status		E_BInfo;//몬스터 기본정보
+	B_Status		E_CurInfo;// 몬스터 현재값
 	int				E_Plase;//몬스터 생존위치
 	bool			E_Life;//몬스터 생존여부
 };
@@ -41,14 +44,26 @@ class EneMy
 	SINGLE(EneMy);
 public:
 	map<EnemyId, E_Info> E_BasicInfo;//적의 모든정보
-	map<EnemyId, E_Info>::iterator	E_Point;
+	map<EnemyId, E_Info>::iterator	E_Point; //적 세팅
+	
+public:
 	// 정보 초기화
 	void EnemyInit();
 	// 위치 정보값 보내면 출력해주는 함수
-	void printEnemyInfo(const E_Info* enemy);
+	void printEnemyInfo( E_Info& enemy);
+	// 위치 정보값 보내면 출력해주는 함수
+	void printEnemyInfo(map<EnemyId, E_Info>::iterator& enemy);
+	/*
 	// id 값 쓰면 정보 주소값 변환하는 함수
 	E_Info* IdReturn(EnemyId Id);
-	
-	
+	*/
+	// 설정한 난이도에 따라 적의 스탯을 변한 시키는 함수
+	B_Status StatChange(GameMode CurMode, EnemyId id);
+	// 적의 총 사이즈를 변환해주는 함수
+	int CurSize() { return (int)EneMy::GetInst()->E_BasicInfo.size(); };
+	// 설정한 난이도에 따라 적을 생성하는 함수
+	void CreateEnemy( EnemyId id);
+private:
+	void CreateEnemy( int	id);
 };
 
