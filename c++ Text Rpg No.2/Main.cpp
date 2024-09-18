@@ -20,7 +20,7 @@ int main()
 
     while(GameOff)
     {
-        
+        // test 용
         Ccore::GetInst()->Progress();
 
 
